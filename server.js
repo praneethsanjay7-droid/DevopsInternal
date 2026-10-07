@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const User = require("./Models/SignIn.js");
+const User = require("./Models/Users.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -46,6 +46,7 @@ app.post("/signin",async(req,res)=>{
         Password:password
     });
     await newUser.save();
+    res.render("Eventpage.ejs",{username});
 })
 
 app.listen(PORT,()=>{
